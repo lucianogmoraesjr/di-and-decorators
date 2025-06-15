@@ -1,0 +1,10 @@
+{
+  "extends": ["@rocketseat/eslint-config/node"],
+  "rules": {
+    "@typescript-eslint/no-namespace": "off",
+    "new-cap": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-use-before-define": "off",
+    "no-useless-constructor": "off"
+  }
+}
