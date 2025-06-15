@@ -9,7 +9,7 @@ export function errorHandler(
   reply: FastifyReply,
 ) {
   if (error instanceof ZodError) {
-    reply.status(400).send({
+    return reply.status(400).send({
       body: {
         error: {
           code: ErrorCode.VALIDATION,
@@ -23,7 +23,7 @@ export function errorHandler(
   }
 
   if (error instanceof HttpError) {
-    reply.status(error.statusCode).send({
+    return reply.status(error.statusCode).send({
       body: {
         error: {
           code: error.code,
@@ -35,7 +35,7 @@ export function errorHandler(
 
   console.error(error)
 
-  reply.status(500).send({
+  return reply.status(500).send({
     body: {
       error: {
         code: ErrorCode.INTERNAL_SERVER_ERROR,
