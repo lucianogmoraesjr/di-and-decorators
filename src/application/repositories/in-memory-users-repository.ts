@@ -1,12 +1,18 @@
 import { Injectable } from '../../kernel/decorators/injectable'
 import { User } from '../entities/user'
+import { InMemoryProfilesRepository } from './in-memory-profiles-repository'
+import { UsersRepository, UserWithProfile } from './users-repository'
 
 @Injectable()
-export class InMemoryUsersRepository {
+export class InMemoryUsersRepository implements UsersRepository {
+  constructor(
+    private readonly profilesRepository: InMemoryProfilesRepository,
+  ) {}
+
   public users: User[] = [
     {
       id: '123',
-      email: 'johnm@mail.com',
+      email: 'john@mail.com',
       name: 'John Doe',
       password: '123456',
     },
@@ -30,6 +36,27 @@ export class InMemoryUsersRepository {
     }
 
     return user
+  }
+
+  async findProfileByUserId(userId: string): Promise<UserWithProfile | null> {
+    const user = this.users.find((user) => user.id === userId)
+
+    if (!user) return null
+
+    const profile = this.profilesRepository.profiles.find(
+      (profile) => profile.userId === userId,
+    )
+
+    if (!profile) return null
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: profile.phone,
+      dateOfBirth: profile.dateOfBirth,
+      avatarImgKey: profile.avatarImgKey,
+    }
   }
 
   async create(user: User): Promise<void> {

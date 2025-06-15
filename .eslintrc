@@ -5,6 +5,8 @@
     "new-cap": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-use-before-define": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "array-callback-return": "off",
+    "@typescript-eslint/ban-types": "off"
   }
 }

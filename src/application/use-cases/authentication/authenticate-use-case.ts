@@ -1,10 +1,10 @@
 import { Injectable } from '../../../kernel/decorators/injectable'
 import { BadRequest } from '../../errors/http/bad-request'
-import { InMemoryUsersRepository } from '../../repositories/in-memory-users-repository'
+import { UsersRepository } from '../../repositories/users-repository'
 
 @Injectable()
 export class AuthenticateUseCase {
-  constructor(private usersRepository: InMemoryUsersRepository) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   async execute({
     email,
@@ -14,7 +14,7 @@ export class AuthenticateUseCase {
     if (!user) throw new BadRequest('User not found')
 
     return {
-      accessToken: `access-token-123-${email}`,
+      accessToken: `access-token-${user.id}-${user.name.toLowerCase().split(' ').join('-')}`,
     }
   }
 }
