@@ -1,9 +1,7 @@
-import { Injectable } from '../../kernel/decorators/injectable'
 import { User } from '../entities/user'
 import { InMemoryProfilesRepository } from './in-memory-profiles-repository'
 import { UsersRepository, UserWithProfile } from './users-repository'
 
-@Injectable()
 export class InMemoryUsersRepository implements UsersRepository {
   constructor(
     private readonly profilesRepository: InMemoryProfilesRepository,

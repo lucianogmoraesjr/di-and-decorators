@@ -1,4 +1,3 @@
-import { Injectable } from '../../kernel/decorators/injectable'
 import { Schema } from '../../kernel/decorators/schema'
 import { Controller } from '../contracts/controller'
 import { AuthenticateUseCase } from '../use-cases/authentication/authenticate-use-case'
@@ -7,7 +6,6 @@ import {
   authenticateSchema,
 } from './schemas/authenticate-schema'
 
-@Injectable()
 @Schema(authenticateSchema)
 export class AuthenticateController extends Controller<{
   accessToken: string

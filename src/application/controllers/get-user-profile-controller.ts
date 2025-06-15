@@ -1,9 +1,7 @@
-import { Injectable } from '../../kernel/decorators/injectable'
 import { Controller } from '../contracts/controller'
 import { UserWithProfile } from '../repositories/users-repository'
 import { GetUserProfileUseCase } from '../use-cases/users/get-user-profile-use-case'
 
-@Injectable()
 export class GetUserProfileController extends Controller<UserWithProfile> {
   constructor(private readonly getUserProfileUseCase: GetUserProfileUseCase) {
     super()

@@ -1,8 +1,6 @@
-import { Injectable } from '../../kernel/decorators/injectable'
 import { Profile } from '../entities/profile'
 import { ProfilesRepository } from './profiles-repository'
 
-@Injectable()
 export class InMemoryProfilesRepository implements ProfilesRepository {
   public profiles: Profile[] = [
     {

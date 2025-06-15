@@ -1,8 +1,6 @@
-import { Injectable } from '../../../kernel/decorators/injectable'
 import { BadRequest } from '../../errors/http/bad-request'
 import { UsersRepository } from '../../repositories/users-repository'
 
-@Injectable()
 export class GetUserProfileUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
