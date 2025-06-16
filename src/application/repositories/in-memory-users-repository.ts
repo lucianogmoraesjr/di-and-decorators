@@ -1,11 +1,11 @@
+import { injectable } from 'inversify'
 import { User } from '../entities/user'
-import { InMemoryProfilesRepository } from './in-memory-profiles-repository'
+import { ProfilesRepository } from './profiles-repository'
 import { UsersRepository, UserWithProfile } from './users-repository'
 
+@injectable()
 export class InMemoryUsersRepository implements UsersRepository {
-  constructor(
-    private readonly profilesRepository: InMemoryProfilesRepository,
-  ) {}
+  constructor(private readonly profilesRepository: ProfilesRepository) {}
 
   public users: User[] = [
     {
@@ -41,9 +41,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     if (!user) return null
 
-    const profile = this.profilesRepository.profiles.find(
-      (profile) => profile.userId === userId,
-    )
+    const profile = await this.profilesRepository.findByUserId(userId)
 
     if (!profile) return null
 

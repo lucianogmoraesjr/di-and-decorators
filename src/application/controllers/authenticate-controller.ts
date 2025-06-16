@@ -1,3 +1,4 @@
+import { injectable } from 'inversify'
 import { Schema } from '../../kernel/decorators/schema'
 import { Controller } from '../contracts/controller'
 import { AuthenticateUseCase } from '../use-cases/authentication/authenticate-use-case'
@@ -6,6 +7,7 @@ import {
   authenticateSchema,
 } from './schemas/authenticate-schema'
 
+@injectable()
 @Schema(authenticateSchema)
 export class AuthenticateController extends Controller<{
   accessToken: string

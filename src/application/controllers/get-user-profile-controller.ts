@@ -1,7 +1,9 @@
+import { injectable } from 'inversify'
 import { Controller } from '../contracts/controller'
 import { UserWithProfile } from '../repositories/users-repository'
 import { GetUserProfileUseCase } from '../use-cases/users/get-user-profile-use-case'
 
+@injectable()
 export class GetUserProfileController extends Controller<UserWithProfile> {
   constructor(private readonly getUserProfileUseCase: GetUserProfileUseCase) {
     super()

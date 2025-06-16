@@ -1,6 +1,8 @@
+import { injectable } from 'inversify'
 import { Profile } from '../entities/profile'
 import { ProfilesRepository } from './profiles-repository'
 
+@injectable()
 export class InMemoryProfilesRepository implements ProfilesRepository {
   public profiles: Profile[] = [
     {

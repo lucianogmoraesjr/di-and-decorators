@@ -1,6 +1,8 @@
+import { injectable } from 'inversify'
 import { BadRequest } from '../../errors/http/bad-request'
 import { UsersRepository } from '../../repositories/users-repository'
 
+@injectable()
 export class AuthenticateUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
